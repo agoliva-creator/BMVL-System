@@ -1,0 +1,162 @@
+/* Shared announcement create/edit form styles */
+.announcement-create-page { display:flex; width:min(100%,1180px); min-width:0; min-height:0; flex:1 1 auto; flex-direction:column; margin:0 auto; color:var(--ink); }
+.announcement-create-heading { display:flex; flex:0 0 auto; align-items:center; justify-content:space-between; gap:16px; margin:0 0 14px; }
+.announcement-create-eyebrow { display:block; margin-bottom:4px; color:var(--gold); font-size:.66rem; font-weight:800; letter-spacing:.14em; }
+.announcement-create-heading h1 { margin:0; color:var(--teal-deep); font-family:'Archivo',sans-serif; font-size:clamp(1.4rem,2.2vw,1.85rem); font-weight:800; }
+.announcement-create-heading h1 i { margin-right:8px; color:var(--teal); }
+.announcement-create-heading p { margin:4px 0 0; color:var(--ink-muted); font-size:.86rem; }
+.announcement-create-back { display:inline-flex; min-height:39px; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:8px; color:var(--teal-deep); background:var(--panel); font-size:.8rem; font-weight:700; text-decoration:none; white-space:nowrap; }
+.announcement-create-back:hover { border-color:var(--teal); color:var(--teal); }
+.announcement-form-panel {
+    max-width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel);
+    box-shadow: 0 12px 32px rgba(10, 58, 60, .07);
+}
+.announcement-create-card { display:flex; width:100%; max-width:none; min-height:0; flex:1 1 auto; flex-direction:column; margin:0; border-radius:15px; }
+.announcement-create-card .announcement-create-card-header { display:flex; flex:0 0 auto; align-items:center; gap:12px; padding:16px 22px; }
+.announcement-create-icon { display:grid; width:38px; height:38px; flex:0 0 38px; place-items:center; border-radius:11px; color:var(--teal); background:rgba(255,255,255,.75); font-size:1rem; }
+.announcement-create-card-header h2 { margin:0; color:var(--teal-deep); font-family:'Archivo',sans-serif; font-size:1.05rem; font-weight:800; }
+.announcement-create-card-header p { margin:3px 0 0; color:var(--ink-muted); font-size:.76rem; }
+.announcement-create-card .form-panel-body { min-height:0; flex:1 1 auto; overflow-y:auto; padding:22px; }
+.announcement-create-grid { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr); align-items:start; gap:20px; }
+.announcement-compose-fields { display:grid; gap:16px; min-width:0; }
+.announcement-create-field { min-width:0; }
+.announcement-create-field > label { display:block; margin-bottom:6px; color:var(--ink); font-size:.81rem; font-weight:700; }
+.announcement-create-field > label > span { color:#a6392f; }
+.announcement-create-field .form-control,.announcement-create-field .form-select { min-height:43px; padding:9px 12px; border:1px solid var(--border); border-radius:7px; font-size:.88rem; }
+.announcement-create-field .form-control:focus,.announcement-create-field .form-select:focus { border-color:var(--teal); box-shadow:0 0 0 .2rem rgba(14,75,78,.15); }
+.announcement-create-field small { display:block; margin-top:5px; color:var(--ink-muted); font-size:.72rem; }
+.announcement-create-field .invalid-feedback { font-size:.73rem; }
+.announcement-content-field textarea.form-control { min-height:210px; resize:vertical; line-height:1.55; }
+.announcement-settings-panel { display:grid; gap:15px; padding:16px; border:1px solid var(--border); border-radius:11px; background:#fbfcfa; }
+.announcement-settings-heading { display:flex; align-items:flex-start; gap:10px; padding-bottom:12px; border-bottom:1px solid var(--border); color:var(--teal); }
+.announcement-settings-heading > i { margin-top:2px; }
+.announcement-settings-heading div { display:grid; gap:3px; }
+.announcement-settings-heading strong { color:var(--teal-deep); font-size:.85rem; }
+.announcement-settings-heading span { color:var(--ink-muted); font-size:.72rem; }
+.announcement-pin-option { display:flex; align-items:flex-start; gap:10px; padding:12px; border:1px solid var(--border); border-radius:9px; background:#fff; cursor:pointer; }
+.announcement-pin-option input { width:17px; height:17px; flex:0 0 17px; margin-top:2px; accent-color:var(--gold); }
+.announcement-pin-copy { display:grid; gap:4px; }
+.announcement-pin-copy strong { color:var(--ink); font-size:.78rem; }
+.announcement-pin-copy strong i { margin-right:4px; color:var(--gold); }
+.announcement-pin-copy small { color:var(--ink-muted); font-size:.7rem; }
+.announcement-create-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:19px; padding-top:14px; border-top:1px solid var(--border); }
+.announcement-create-actions .btn-brand,.announcement-create-actions .btn-brand-outline { min-height:40px; gap:7px; }
+.announcement-submit:disabled { opacity:.75; cursor:wait; }
+.announcement-edit-page .announcement-create-grid { grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr); }
+.announcement-edit-page .announcement-content-field textarea.form-control { min-height:250px; }
+.announcement-edit-page .announcement-create-card .form-panel-body { padding:20px 22px; }
+.announcement-edit-page .announcement-settings-panel { align-content:start; }
+.announcement-edit-status { display:flex; align-items:center; justify-content:space-between; gap:8px; padding-top:11px; border-top:1px solid var(--border); color:var(--ink-muted); font-size:.73rem; }
+.announcement-edit-status strong { padding:4px 9px; border-radius:999px; font-size:.68rem; }
+.announcement-edit-status .is-active { color:#176b3a; background:#e7f4e9; }
+.announcement-edit-status .is-hidden { color:#5f6b67; background:#edf0ef; }
+.announcement-update-button:disabled,.announcement-submit:disabled { opacity:.75; cursor:wait; }
+.announcement-form-panel .form-panel-header {
+    padding: 20px 26px;
+    border-bottom: 1px solid var(--border);
+    background: var(--teal-pale);
+}
+.announcement-form-panel .form-panel-header h4 {
+    margin: 0;
+    color: var(--teal-deep);
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+.announcement-form-panel .form-panel-body { padding: 24px 26px; }
+.announcement-form-panel .form-label {
+    color: var(--ink);
+    font-family: 'Public Sans', sans-serif;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.announcement-form-panel .form-control,
+.announcement-form-panel .form-select {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: .92rem;
+}
+.announcement-form-panel .form-control:focus,
+.announcement-form-panel .form-select:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 .2rem rgba(14, 75, 78, .15);
+}
+.announcement-form-panel textarea.form-control { min-height: 145px; resize: vertical; }
+.announcement-form-panel .mb-3 { margin-bottom: 17px !important; }
+.announcement-form-panel .mb-4 { margin-bottom: 20px !important; }
+.announcement-form-error {
+    margin-bottom: 18px;
+    padding: 12px 16px;
+    border: 1px solid #E3B7B0;
+    border-radius: 8px;
+    background: #F4E3E1;
+    color: #A6392F;
+}
+.announcement-form-panel .pin-checkbox-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #f5f7f5;
+}
+.announcement-form-panel .pin-checkbox-wrap input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    accent-color: var(--gold);
+    cursor: pointer;
+}
+.announcement-form-panel .pin-checkbox-wrap label { margin: 0; color: var(--ink); font-size: .86rem; font-weight: 650; cursor: pointer; }
+.announcement-pin-icon { color: var(--gold); }
+.announcement-form-panel .btn-brand,
+.announcement-form-panel .btn-brand-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 18px;
+    border: 1px solid var(--teal);
+    border-radius: 7px;
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.announcement-form-panel .btn-brand { background: var(--teal); color: #fff; }
+.announcement-form-panel .btn-brand:hover { border-color: var(--teal-deep); background: var(--teal-deep); color: #fff; }
+.announcement-form-panel .btn-brand-outline { border-color: var(--border); background: transparent; color: var(--teal); }
+.announcement-form-panel .btn-brand-outline:hover { border-color: var(--teal); background: var(--teal-pale); color: var(--teal-deep); }
+.announcement-submit { cursor: pointer; }
+@media (max-width: 767.98px) {
+    .announcement-create-heading { align-items:flex-start; flex-direction:column; gap:10px; }
+    .announcement-create-grid { grid-template-columns:minmax(0,1fr); }
+    .announcement-create-card .form-panel-body { padding:18px; }
+    .announcement-content-field textarea.form-control { min-height:180px; }
+}
+@media (max-width: 575.98px) {
+    .announcement-create-heading { align-items:flex-start; flex-direction:column; gap:10px; }
+    .announcement-create-heading h1 { font-size:1.3rem; }
+    .announcement-create-heading p { font-size:.78rem; }
+    .announcement-create-back { min-height:35px; padding:7px 10px; font-size:.76rem; }
+    .announcement-create-card .announcement-create-card-header { padding:13px 15px; }
+    .announcement-create-card .form-panel-body { padding:15px; }
+    .announcement-create-grid { grid-template-columns:minmax(0,1fr); gap:15px; }
+    .announcement-compose-fields { gap:12px; }
+    .announcement-content-field textarea.form-control { min-height:160px; font-size:16px; }
+    .announcement-create-field .form-control,.announcement-create-field .form-select { font-size:16px; }
+    .announcement-settings-panel { gap:12px; padding:13px; }
+    .announcement-create-actions { justify-content:stretch; }
+    .announcement-create-actions > * { flex:1; }
+}
+@media (max-width: 767.98px) {
+    .announcement-edit-page .announcement-create-heading { align-items:flex-start; flex-direction:column; gap:10px; }
+    .announcement-edit-page .announcement-create-grid { grid-template-columns:minmax(0,1fr); }
+    .announcement-edit-page .announcement-content-field textarea.form-control { min-height:190px; }
+}

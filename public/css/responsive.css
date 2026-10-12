@@ -1,0 +1,384 @@
+/* Shared responsive refinements for authenticated application pages. */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html,
+body { max-width: 100%; }
+
+img,
+video,
+iframe,
+canvas,
+svg { max-width: 100%; }
+
+.main-wrap,
+.main-wrap > main.container,
+.main-wrap main,
+.row > *,
+.card,
+.modal-dialog { min-width: 0; }
+
+input,
+select,
+textarea,
+button { max-width: 100%; }
+
+/* Keep authenticated pages within the viewport. The dashboard keeps its own scroll behavior. */
+body.has-sidebar:not(:has(.dashboard-page)) {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden !important;
+}
+
+body.has-sidebar:not(:has(.dashboard-page)) .main-wrap {
+    display: flex;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-top: calc(var(--topbar-h) + 16px);
+    padding-bottom: 12px;
+}
+
+body.has-sidebar:not(:has(.dashboard-page)) .main-wrap > main.container {
+    display: flex;
+    min-height: 0;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.users-page,
+.courts-page,
+.equipment-page,
+.announcements-page,
+.booking-calendar-page,
+.booking-create-page,
+.booking-edit-page,
+.bookings-page,
+.profile-page,
+.report-page {
+    display: flex;
+    min-height: 0;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.bookings-heading { flex: 0 0 auto; }
+.bookings-panel,
+.booking-calendar-panel { display: flex; min-height: 0; flex: 1 1 auto; flex-direction: column; }
+.booking-table-wrap { min-height: 0; flex: 1 1 auto; overflow: hidden; }
+.report-document { min-height: 0; flex: 1 1 auto; overflow-y: auto; }
+
+.main-wrap > main.container > .form-panel {
+    display: flex;
+    min-height: 0;
+    max-height: 100%;
+    flex-direction: column;
+    margin-top: 0 !important;
+}
+
+.main-wrap > main.container > .form-panel .form-panel-body { min-height: 0; flex: 1 1 auto; overflow-y: auto; }
+
+.dataTables_wrapper { max-width: 100%; }
+.dataTables_wrapper > .row { --bs-gutter-x: .75rem; }
+
+@media (max-width: 991.98px) {
+    body.has-sidebar:has(.dashboard-page) { overflow-x: hidden; overflow-y: auto; }
+
+    body.has-sidebar:not(:has(.dashboard-page)) .main-wrap > main.container {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .users-page,
+    .courts-page,
+    .equipment-page,
+    .announcements-page,
+    .booking-calendar-page,
+    .booking-create-page,
+    .booking-edit-page,
+    .bookings-page,
+    .profile-page,
+    .report-page {
+        display: flex !important;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .users-table-wrap,
+    .courts-table-wrap,
+    .equipment-table-wrap,
+    .announcements-table-wrap,
+    .booking-table-wrap { max-width: 100%; }
+
+    .users-panel,
+    .courts-panel,
+    .equipment-panel,
+    .announcements-panel,
+    .bookings-panel { min-height: 0; flex: 1 1 auto; }
+
+    /* Keep the profile card's full contents inside its border on small screens.
+       A single-column flex layout lets each card grow to its natural height;
+       scrolling stays on the form area instead of clipping the card rows. */
+    .profile-form {
+        display: flex;
+        min-height: 0;
+        flex: 1 1 auto;
+        flex-direction: column;
+        align-items: stretch;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: 2px;
+    }
+    .profile-identity-card,
+    .profile-details-card { flex: 0 0 auto; }
+    .profile-details-card { height: auto; min-height: max-content; overflow: visible; }
+    .booking-create-page .booking-form-panel { min-height: 0; flex: 1 1 auto; display: flex; flex-direction: column; }
+    .booking-create-page .booking-form-body { min-height: 0; overflow-y: auto; }
+    .booking-edit-card { min-height: 0; flex: 1 1 auto; overflow: hidden; display: flex; flex-direction: column; }
+    .booking-edit-body { min-height: 0; overflow-y: auto; }
+    .report-document { min-height: 0; overflow-y: auto; }
+    .dataTables_scrollBody { overflow-x: auto !important; }
+}
+
+@media (max-width: 767.98px) {
+    .main-wrap main h1,
+    .main-wrap main h2 { font-size: clamp(1.2rem, 3.4vw, 1.55rem); line-height: 1.2; }
+
+    .users-title,
+    .courts-title,
+    .equipment-title,
+    .announcements-title,
+    .booking-list-title,
+    .dash-header h2,
+    .profile-page-heading h1,
+    .booking-edit-heading h1,
+    .booking-page-heading h2 {
+        font-size: clamp(1.2rem, 3.4vw, 1.55rem) !important;
+        line-height: 1.2;
+    }
+
+    .users-subtitle,
+    .courts-subtitle,
+    .equipment-subtitle,
+    .announcements-subtitle,
+    .booking-list-subtitle,
+    .booking-page-heading p,
+    .profile-page-heading p { font-size: .86rem; line-height: 1.4; }
+
+    .dash-table { font-size: .86rem; }
+    .dash-table thead th { font-size: .7rem; }
+    .dash-table td { font-size: .82rem; }
+    .btn,
+    .btn-brand,
+    .btn-brand-outline,
+    .users-create-button { font-size: .84rem; }
+
+    .topbar { gap: 8px; padding-right: 10px; padding-left: 10px; }
+    .topbar-left { min-width: 0; gap: 8px; }
+    .brand-logo { min-width: 0; gap: 7px; font-size: clamp(.78rem, 3.1vw, 1rem); white-space: nowrap; }
+    .brand-logo img { width: 32px; height: 32px; flex: 0 0 auto; }
+    .topbar-actions { min-width: 0; gap: 6px !important; }
+    .user-badge { max-width: 32vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 6px 9px; font-size: .72rem; }
+    .topbar-profile-link,
+    .topbar-logout-button { white-space: nowrap; padding: 6px 8px !important; font-size: .75rem; }
+    .topbar-profile-link .me-1,
+    .topbar-logout-button .me-1 { margin-right: 3px !important; }
+
+    .page-header,
+    .users-heading,
+    .courts-heading,
+    .equipment-heading,
+    .announcements-heading { gap: 10px; align-items: flex-start !important; flex-wrap: wrap; }
+
+    .page-title { font-size: clamp(1.2rem, 3.4vw, 1.55rem) !important; }
+
+    .card-body { padding: 1rem; }
+    .modal-dialog { margin: .5rem; }
+    .modal-content { max-width: calc(100vw - 1rem); }
+
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate { padding: 8px !important; }
+    .dataTables_wrapper .dataTables_filter input { width: min(58vw, 220px); }
+    .dataTables_wrapper .dataTables_paginate .pagination { flex-wrap: wrap; justify-content: flex-end; }
+    .dataTables_wrapper > .row:last-child { row-gap: 4px; }
+
+    .report-document { margin: 16px auto; padding: 28px 22px; }
+    .report-header { align-items: flex-start; flex-direction: column; gap: 12px; }
+    .brand-title { font-size: clamp(1.3rem, 4.5vw, 1.7rem); }
+    .fin-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+}
+
+@media (max-width: 575.98px) {
+    .main-wrap main h1,
+    .main-wrap main h2 { font-size: clamp(1.12rem, 4.2vw, 1.35rem); }
+
+    .users-title,
+    .courts-title,
+    .equipment-title,
+    .announcements-title,
+    .booking-list-title,
+    .dash-header h2,
+    .profile-page-heading h1,
+    .booking-edit-heading h1,
+    .booking-page-heading h2,
+    .page-title { font-size: clamp(1.12rem, 4.2vw, 1.35rem) !important; }
+
+    .users-subtitle,
+    .courts-subtitle,
+    .equipment-subtitle,
+    .announcements-subtitle,
+    .booking-list-subtitle,
+    .booking-page-heading p,
+    .profile-page-heading p { font-size: .8rem; }
+
+    .dash-table { font-size: .8rem; }
+    .dash-table thead th { font-size: .66rem; padding: 8px 9px; }
+    .dash-table td { font-size: .76rem; padding: 8px 9px; }
+    .dash-badge { font-size: .68rem; padding: 4px 9px; }
+    .btn,
+    .btn-brand,
+    .btn-brand-outline,
+    .users-create-button { font-size: .78rem; }
+
+    .main-wrap > main.container,
+    .main-wrap:has(.dashboard-page) > main.container,
+    .main-wrap:has(.users-page) > main.container,
+    .main-wrap:has(.courts-page) > main.container,
+    .main-wrap:has(.equipment-page) > main.container,
+    .main-wrap:has(.announcements-page) > main.container,
+    .main-wrap:has(.booking-create-page) > main.container,
+    .main-wrap:has(.booking-calendar-page) > main.container,
+    .main-wrap:has(.profile-page) > main.container { padding-right: 10px !important; padding-left: 10px !important; }
+
+    .topbar { padding-right: 7px; padding-left: 7px; }
+    .topbar-left { gap: 5px; }
+    .sidebar-toggle { width: 32px; height: 32px; flex: 0 0 auto; }
+    .brand-logo { gap: 5px; font-size: .74rem; }
+    .brand-logo img { width: 28px; height: 28px; }
+    .topbar-actions { gap: 4px !important; }
+    .user-badge { width: 30px; height: 30px; max-width: 30px; padding: 0; justify-content: center; font-size: 0; flex: 0 0 auto; }
+    .user-badge i { font-size: .9rem; }
+    .topbar-profile-link,
+    .topbar-logout-button,
+    .topbar-actions > a.btn { width: 32px; height: 32px; padding: 0 !important; display: inline-flex; align-items: center; justify-content: center; font-size: 0; flex: 0 0 auto; }
+    .topbar-profile-link i,
+    .topbar-logout-button i,
+    .topbar-actions > a.btn i { margin: 0 !important; font-size: .85rem; }
+    .topbar-actions form { margin: 0; }
+
+    .dashboard-page .row,
+    .profile-page .row { --bs-gutter-x: .75rem; --bs-gutter-y: .75rem; }
+    .dashboard-page h1 { font-size: 1.3rem; }
+    .dashboard-page .table-responsive { padding: .5rem !important; }
+
+    .brand-title { font-size: clamp(1.25rem, 4.5vw, 1.55rem); }
+
+}
+
+@media (max-width: 1199.98px) {
+    /* Keep horizontal table scrolling inside each table viewport. */
+    body:has(.users-table-wrap),
+    body:has(.courts-table-wrap),
+    body:has(.equipment-table-wrap),
+    body:has(.booking-table-wrap),
+    body:has(.announcements-table-wrap) { overflow-x: hidden; }
+
+    .users-table-wrap,
+    .courts-table-wrap,
+    .equipment-table-wrap,
+    .booking-table-wrap,
+    .announcements-table-wrap {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden !important;
+    }
+
+    #usersTable_wrapper,
+    #courtsTable_wrapper,
+    #equipmentTable_wrapper,
+    #bookingsTable_wrapper,
+    #announcementsTable_wrapper,
+    #usersTable_wrapper .dataTables_scroll,
+    #courtsTable_wrapper .dataTables_scroll,
+    #equipmentTable_wrapper .dataTables_scroll,
+    #bookingsTable_wrapper .dataTables_scroll,
+    #announcementsTable_wrapper .dataTables_scroll { width: 100%; max-width: 100%; min-width: 0; }
+
+    #usersTable_wrapper .dataTables_scrollBody,
+    #courtsTable_wrapper .dataTables_scrollBody,
+    #equipmentTable_wrapper .dataTables_scrollBody,
+    #bookingsTable_wrapper .dataTables_scrollBody,
+    #announcementsTable_wrapper .dataTables_scrollBody {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        overscroll-behavior-x: contain;
+    }
+
+    #usersTable_wrapper .dataTables_scrollHead,
+    #courtsTable_wrapper .dataTables_scrollHead,
+    #equipmentTable_wrapper .dataTables_scrollHead,
+    #bookingsTable_wrapper .dataTables_scrollHead,
+    #announcementsTable_wrapper .dataTables_scrollHead { max-width: 100%; overflow: hidden; }
+
+    #usersTable,
+    #usersTable_wrapper .dataTables_scrollHead table,
+    #usersTable_wrapper .dataTables_scrollBody table { min-width: 820px !important; }
+
+    #courtsTable,
+    #courtsTable_wrapper .dataTables_scrollHead table,
+    #courtsTable_wrapper .dataTables_scrollBody table { min-width: 850px !important; }
+
+    #equipmentTable,
+    #equipmentTable_wrapper .dataTables_scrollHead table,
+    #equipmentTable_wrapper .dataTables_scrollBody table { min-width: 780px !important; }
+
+    #bookingsTable,
+    #bookingsTable_wrapper .dataTables_scrollHead table,
+    #bookingsTable_wrapper .dataTables_scrollBody table { min-width: 760px !important; }
+
+    #announcementsTable,
+    #announcementsTable_wrapper .dataTables_scrollHead table,
+    #announcementsTable_wrapper .dataTables_scrollBody table { min-width: 800px !important; }
+}
+
+@media (max-width: 575.98px) {
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter { text-align: left !important; }
+    .dataTables_wrapper .dataTables_paginate { text-align: left !important; }
+    .dataTables_wrapper .dataTables_paginate .pagination { justify-content: flex-start; }
+
+    .fin-grid { grid-template-columns: minmax(0, 1fr); }
+    .report-document { padding: 22px 14px; }
+    .report-document .table-responsive { overflow-x: auto; }
+
+    .btn,
+    .btn-brand,
+    .btn-brand-outline { max-width: 100%; }
+    .form-actions,
+    .form-buttons { flex-wrap: wrap; }
+}
+
+@media print {
+    body.has-sidebar,
+    body.has-sidebar .main-wrap,
+    body.has-sidebar .main-wrap > main.container {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        display: block !important;
+    }
+    .report-document { overflow: visible !important; }
+}

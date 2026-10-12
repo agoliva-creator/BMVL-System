@@ -1,0 +1,225 @@
+:root {
+            --bg: #F7F5EF;
+            --panel: #FFFFFF;
+            --ink: #1A2422;
+            --ink-muted: #57635F;
+            --teal: #0E4B4E;
+            --teal-deep: #0A3A3C;
+            --teal-pale: #DCE9E8;
+            --gold: #A67C27;
+            --border: #DDD7C9;
+            --sidebar-w: 248px;
+            --topbar-h: 64px;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: 'Public Sans', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 800;
+        }
+
+        /* ===== Top bar (brand + user menu, always shown) ===== */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--topbar-h);
+            background-color: rgba(247, 245, 239, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1030;
+        }
+
+        .topbar-left { display: flex; align-items: center; gap: 14px; }
+
+        .sidebar-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ink) !important;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .brand-logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-badge {
+            background-color: var(--teal-pale);
+            color: var(--teal-deep);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .user-badge i { color: var(--gold); }
+
+        .btn-outline-danger { border-radius: 6px; }
+
+        /* Shared brand buttons */
+        .btn-brand, .btn-brand-outline {
+            font-family: 'Public Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border-radius: 6px;
+            padding: 10px 22px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .btn-brand {
+            background-color: var(--teal);
+            color: #fff;
+            border: 1px solid var(--teal);
+        }
+
+        .btn-brand:hover {
+            background-color: var(--teal-deep);
+            border-color: var(--teal-deep);
+            color: #fff;
+        }
+
+        .btn-brand-outline {
+            background-color: transparent;
+            color: var(--teal);
+            border: 1px solid var(--teal);
+        }
+
+        .btn-brand-outline:hover {
+            background-color: var(--teal-pale);
+            color: var(--teal-deep);
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            position: fixed;
+            top: var(--topbar-h);
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-w);
+            background-color: var(--panel);
+            border-right: 1px solid var(--border);
+            padding: 20px 12px;
+            overflow-y: auto;
+            z-index: 1020;
+            transition: transform 0.25s ease;
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 8px;
+            color: var(--ink-muted);
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            margin-bottom: 4px;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .sidebar-nav-link i { width: 18px; text-align: center; color: var(--ink-muted); }
+
+        .sidebar-nav-link:hover {
+            background-color: var(--teal-pale);
+            color: var(--teal-deep);
+        }
+
+        .sidebar-nav-link:hover i { color: var(--teal-deep); }
+
+        .sidebar-nav-link.active {
+            background-color: var(--teal);
+            color: #fff;
+        }
+
+        .sidebar-nav-link.active i { color: #fff; }
+
+        .sidebar-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 14px 4px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 58, 60, 0.35);
+            z-index: 1010;
+        }
+
+        /* ===== Main content ===== */
+        .main-wrap {
+            padding-top: calc(var(--topbar-h) + 24px);
+            padding-bottom: 40px;
+        }
+
+        body.has-sidebar .main-wrap {
+            margin-left: var(--sidebar-w);
+        }
+
+        /* ===== Responsive: sidebar becomes an off-canvas drawer ===== */
+        @media (max-width: 991px) {
+            .sidebar-toggle { display: inline-flex; }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            body.sidebar-open .sidebar { transform: translateX(0); }
+            body.sidebar-open .sidebar-overlay { display: block; }
+
+            body.has-sidebar .main-wrap { margin-left: 0; }
+        }
+
+        /* SweetAlert2 theming to match brand */
+        .swal2-popup {
+            font-family: 'Public Sans', sans-serif !important;
+            border-radius: 14px !important;
+        }
+
+        .swal2-title {
+            font-family: 'Archivo', sans-serif !important;
+            font-weight: 800 !important;
+            color: var(--ink) !important;
+        }
+
+        .swal2-html-container { color: var(--ink-muted) !important; }
+
+        .swal2-actions .swal2-confirm {
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            padding: 10px 26px !important;
+        }
