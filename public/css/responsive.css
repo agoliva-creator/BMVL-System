@@ -74,6 +74,41 @@ body.has-sidebar:not(:has(.dashboard-page)) .main-wrap > main.container {
 .booking-table-wrap { min-height: 0; flex: 1 1 auto; overflow: hidden; }
 .report-document { min-height: 0; flex: 1 1 auto; overflow-y: auto; }
 
+/* The user edit form can exceed short viewports; let its page scroll to the actions. */
+body.has-sidebar:has(.user-edit-page) {
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+.main-wrap:has(.user-edit-page) {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible !important;
+    padding-bottom: 24px;
+}
+
+body.has-sidebar:not(:has(.dashboard-page)) .main-wrap:has(.user-edit-page) {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+}
+
+body.has-sidebar:not(:has(.dashboard-page)) .main-wrap:has(.user-edit-page) > main.container {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible !important;
+}
+
+.user-edit-page {
+    display: block;
+    min-height: max-content;
+    overflow: visible;
+    padding-bottom: 16px;
+}
+
 .main-wrap > main.container > .form-panel {
     display: flex;
     min-height: 0;
