@@ -74,7 +74,7 @@
                                 <label class="form-label">Password</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                    <input id="password" type="password" name="password" class="form-control" placeholder="Enter your password" required>
+                                    <input id="password" type="password" name="password" class="form-control" placeholder="Enter your password" autocomplete="new-password" required>
                                 </div>
                             </div>
 
@@ -83,7 +83,7 @@
                                 <!-- The name must be password_confirmation for Laravel's 'confirmed' validation rule to work -->
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Re-enter your password" required>
+                                    <input id="passwordConfirmation" type="password" name="password_confirmation" class="form-control" placeholder="Re-enter your password" autocomplete="new-password" required>
                                 </div>
                             </div>
 
@@ -114,26 +114,60 @@
             const registerSpinner = document.getElementById('registerSpinner');
             const errorElement = document.getElementById('errTxt');
             const submitButton = registerForm.querySelector('button[type="submit"]');
+            const password = document.getElementById('password').value;
+            const passwordConfirmation = document.getElementById('passwordConfirmation').value;
 
-            registerSpinner.style.display = 'inline-block';
             errorElement.textContent = '';
             errorElement.classList.add('d-none');
+
+            if (password.length < 8) {
+                errorElement.textContent = 'Password must be at least 8 characters long.';
+                errorElement.classList.remove('d-none');
+                document.getElementById('password').focus();
+                return;
+            }
+
+            if (password !== passwordConfirmation) {
+                errorElement.textContent = 'The password confirmation does not match.';
+                errorElement.classList.remove('d-none');
+                document.getElementById('passwordConfirmation').focus();
+                return;
+            }
+
+            registerSpinner.style.display = 'inline-block';
             submitButton.disabled = true;
 
             try {
                 const response = await fetch(registerForm.action, {
                     method: 'POST',
-                    headers: { 'Accept': 'application/json' },
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
                     body: new FormData(registerForm),
                     credentials: 'same-origin',
                 });
-                const data = await response.json();
+
+                const responseText = await response.text();
+                let data;
+                try {
+                    data = responseText ? JSON.parse(responseText) : {};
+                } catch {
+                    if (response.status === 419) {
+                        throw new Error('Your session expired. Refresh the page and try registering again.');
+                    }
+                    throw new Error('The server returned an unexpected response. Please refresh the page and try again.');
+                }
 
                 if (!response.ok) {
                     const validationError = data.errors
                         ? Object.values(data.errors).flat()[0]
                         : null;
                     throw new Error(validationError || data.message || 'Unable to create your account.');
+                }
+
+                if (!data.redirect_url) {
+                    throw new Error('Your account was created, but the next page could not be loaded. Please log in.');
                 }
 
                 window.location.href = data.redirect_url;
