@@ -88,6 +88,10 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'phone_number' => 'nullable|string|max:20',
             'password' => 'required|string|min:8|confirmed',
+        ], [
+            'password.min' => 'Password must be at least 8 characters long.',
+            'password.confirmed' => 'The password confirmation does not match.',
+            'email.unique' => 'An account already exists with this email address.',
         ]);
 
         // 2. Create the user and default their role to 'athlete'
